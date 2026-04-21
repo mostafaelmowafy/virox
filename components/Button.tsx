@@ -5,6 +5,7 @@ import Image from "next/image";
 export default function Button() {
   return (
     // استخدام group عشان لما نعمل hover على أي جزء، التأثير يطبق على الشكل كله
+
     <button
       onClick={() => {
         document

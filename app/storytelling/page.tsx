@@ -1,130 +1,167 @@
+"use client";
+import Button from "@/components/Button";
+import Image from "next/image";
 import Link from "next/link";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Storytelling — KREVA GEL",
-  description: "قصة VIROX — كيف بدأت الرحلة نحو حل حقيقي لضعف الانتصاب",
-};
-
-const milestones = [
-  {
-    year: "2018",
-    title: "بداية البحث",
-    desc: "بدأ فريق من الأطباء المتخصصين رحلة البحث عن حل جذري لمشكلة ضعف الانتصاب التي تؤثر على ملايين الرجال حول العالم.",
-  },
-  {
-    year: "2020",
-    title: "اكتشاف التركيبة",
-    desc: "بعد آلاف الساعات من التجارب المعملية، تم اكتشاف التركيبة الفريدة التي تجمع بين تنشيط الدورة الدموية وزيادة إفراز التستوستيرون.",
-  },
-  {
-    year: "2022",
-    title: "التجارب السريرية",
-    desc: "أُجريت التجارب السريرية على أكثر من 2,000 مريض في مستشفيات معتمدة، وأثبتت النتائج فعالية استثنائية تجاوزت توقعات الفريق الطبي.",
-  },
-  {
-    year: "2023",
-    title: "الحصول على الترخيص",
-    desc: "حصل VIROX على الترخيص الرسمي من وزارة الصحة بعد اجتياز جميع معايير الجودة والسلامة المطلوبة.",
-  },
-  {
-    year: "2024",
-    title: "إطلاق المنتج",
-    desc: "وصل VIROX إلى أيدي آلاف الرجال في مختلف المحافظات، مغيراً حياتهم وعلاقاتهم إلى الأبد.",
-  },
-];
 
 export default function Storytelling() {
   return (
-    <>
-      <main className="pt-24">
-        {/* Hero */}
-        <section className="relative py-32 charcoal-bg overflow-hidden">
-          <div
-            className="absolute inset-0 opacity-[0.04]"
-            style={{
-              backgroundImage:
-                "radial-gradient(#d4af37 0.5px, transparent 0.5px)",
-              backgroundSize: "24px 24px",
-            }}
+    <Link href="/productsells">
+      <main
+        className="bg-[#fcfcfc] text-gray-900 overflow-x-hidden font-sans"
+        dir="rtl"
+      >
+        {/* 1. Hero Section - The Hook */}
+        <div className=" h-svh">
+          <Image
+            src="/doctor.jpg"
+            alt="Dr. Safaa"
+            fill
+            priority // ← هذه الصورة هي LCP، تُحمَّل أولاً
+            className="opacity-90"
+            sizes="100vw"
           />
-          <div className="container mx-auto px-6 text-center relative z-10">
-            <span className="inline-block px-4 py-1 bg-yellow-900/30 text-[#d4af37] border border-yellow-700/40 rounded-full text-sm font-bold mb-6 uppercase tracking-widest">
-              Our Story
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1c1b1b] via-transparent to-[#1c1b1b]/90" />
+        </div>
+
+        <section className="relative bg-[#1a1918] py-20 text-white border-b-4 border-[#d4af37]">
+          <div className="container mx-auto px-6 text-center">
+            <span className="inline-block px-4 py-1 bg-yellow-900/30 text-[#d4af37] border border-yellow-700/40 rounded-full text-sm font-bold mb-6 animate-bounce">
+              مرخص من وزارة الصحة المصرية ✅
             </span>
-            <h1 className="font-headline font-extrabold text-white text-4xl md:text-6xl mb-6 leading-tight max-w-3xl mx-auto">
-              رحلة من الاكتشاف إلى التغيير الحقيقي
+            <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+              للرجال المتزوجين.. <br />
+              <span className="text-[#d4af37]">ارجـع عريس من جديد</span>
             </h1>
-            <p className="text-white/60 text-xl max-w-2xl mx-auto leading-relaxed">
-              لم يكن VIROX مجرد منتج — كان حلماً بإعادة الثقة والفحولة لكل رجل
-              يستحق حياة أفضل.
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+              استعد ثقتك بنفسك وودع الإحراج للأبد مع الحل الطبيعي والنهائي.
             </p>
+            <div className="bg-[#d4af37] hover:bg-yellow-600 text-black font-bold py-4 px-10 rounded-full text-xl transition-all shadow-xl hover:scale-105 inline-block">
+              احصل على العرض الآن
+            </div>
           </div>
         </section>
-
-        {/* Timeline */}
-        <section className="py-24 bg-white">
-          <div className="container mx-auto px-6 max-w-4xl">
-            <div className="relative">
-              {/* Center line */}
-              <div className="absolute right-1/2 top-0 bottom-0 w-px bg-yellow-200 hidden md:block" />
-
-              <div className="space-y-16">
-                {milestones.map((m, i) => (
-                  <div
-                    key={m.year}
-                    className={`relative flex flex-col md:flex-row gap-8 items-center ${i % 2 === 0 ? "md:flex-row-reverse" : ""}`}
-                  >
-                    {/* Year bubble */}
-                    <div className="md:w-1/2 flex justify-center">
-                      <div className="relative z-10 w-20 h-20 rounded-full luxury-gradient flex items-center justify-center shadow-lg shadow-yellow-400/20 flex-shrink-0">
-                        <span className="text-white font-headline font-bold text-sm">
-                          {m.year}
-                        </span>
-                      </div>
-                    </div>
-                    {/* Content */}
-                    <div
-                      className={`md:w-1/2 text-right ${i % 2 === 0 ? "md:text-left" : "md:text-right"}`}
-                    >
-                      <div className="bg-[#fdfaf2] border border-yellow-100 rounded-xl p-8">
-                        <h3 className="font-headline font-bold text-xl text-[#1c1b1b] mb-3">
-                          {m.title}
-                        </h3>
-                        <p className="text-[#4d4635] leading-relaxed">
-                          {m.desc}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+        {/* 2. The Guide - Dr. Safaa Section */}
+        <section className="py-16 bg-white border-b border-gray-100">
+          <div className="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden shadow-2xl rotate-3">
+              {/* استبدل dr-safaa.jpg بالصورة الحقيقية */}
+              <div className="absolute inset-0 bg-gray-200 flex items-center justify-center text-gray-400">
+                <Image
+                  src="/button.png" // تأكد من وضع صورة الطبيب في مجلد public
+                  alt="Dr. Safaa"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+            <div className="flex-1 text-right">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                معاكم دكتورة صفاء..
+              </h2>
+              <div className="space-y-4 text-lg text-gray-700 leading-relaxed">
+                <p>
+                  زهقت من البرشام اللي أضراره أكتر من فوايده؟ جربت حاجات كتير
+                  ولسه انتصابك ضعيف؟
+                </p>
+                <p className="font-semibold text-red-600">
+                  شكلك بيبقى وحش قدام مراتك من كتر الفشل؟
+                </p>
+                <p>
+                  من الطبيعي مع تقدم العمر إن أول حاجة بتأثر عليك هي الضعف..
+                  وصعوبة الانتصاب بتخليك تهرب من القعدة في البيت وتفضل الشغل أو
+                  القهوة.
+                </p>
+                <p className="bg-yellow-50 p-4 border-r-4 border-[#d4af37] italic">
+                  &quot;الحل مش في المسكنات الكيميائية، الحل في العودة للطبيعة
+                  بشكل علمي مدروس.&quot;
+                </p>
               </div>
             </div>
           </div>
+          <Button />
         </section>
 
-        {/* Mission Statement */}
-        <section className="py-24 bg-[#f8f7f5]">
-          <div className="container mx-auto px-6 max-w-4xl text-center">
-            <h2 className="text-4xl font-headline font-bold text-[#1c1b1b] mb-8">
-              رسالتنا
+        {/* 3. The Villain - Why Pills are Bad */}
+        <section className="py-20 bg-gray-50">
+          <div className="container mx-auto px-6 text-center">
+            <h2 className="text-3xl font-bold mb-12">
+              ليه لازم تبعد عن &quot;البرشام&quot;؟
             </h2>
-            <blockquote className="text-2xl text-[#4d4635] leading-loose border-r-4 border-[#d4af37] pr-8 text-right max-w-3xl mx-auto">
-              نؤمن بأن كل رجل يستحق أن يعيش حياة جنسية كاملة ومُرضية، بعيداً عن
-              الإحراج والقلق. مهمتنا هي تقديم الحل الطبي الأكثر أماناً وفعالية،
-              مع الحفاظ على الخصوصية التامة لكل عميل.
-            </blockquote>
-            <div className="mt-16">
-              <Link
-                href="/#order"
-                className="luxury-gradient text-white px-14 py-5 rounded-lg font-bold text-lg shadow-lg hover:scale-105 transition-transform inline-block"
-              >
-                ابدأ رحلتك الآن
-              </Link>
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  t: "خطر على القلب",
+                  d: "يؤثر بشكل مباشر على ضغط الدم ومرضى السكر.",
+                },
+                {
+                  t: "مفعول مؤقت",
+                  d: "بمجرد انتهاء المفعول تعود المشكلة أسوأ من قبل.",
+                },
+                {
+                  t: "أعراض جانبية",
+                  d: "صداع شديد، زغللة في العين، وإرهاق عام.",
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100"
+                >
+                  <div className="text-4xl mb-4 text-red-500">❌</div>
+                  <h3 className="text-xl font-bold mb-2">{item.t}</h3>
+                  <p className="text-gray-600">{item.d}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
+
+        {/* 4. The Hero - Dravon Solution */}
+        <section className="py-20 bg-[#1a1918] text-white">
+          <div className="container mx-auto px-6 text-center">
+            <h2 className="text-4xl font-bold mb-8">
+              الحل هو: <span className="text-[#d4af37]">VIROX</span>
+            </h2>
+            <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-loose">
+              شاب وزيوت طبيعية بنسب دقيقة لتحقيق أقصى استفادة. آمن تماماً على
+              مرضى السكر والضغط والقلب. بمجرد أول دهنة هتلاقي انتصابك بقى
+              فولاذي.
+            </p>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-right">
+              {[
+                "آمن 100% بدون أعراض جانبية",
+                "حل نهائي مش مجرد مؤقت",
+                "بيوصلك للمستوى المطلوب فوراً",
+                "مناسب لجميع الأعمار",
+              ].map((feature, i) => (
+                <div
+                  key={i}
+                  className="bg-[#252423] p-6 rounded-xl border-r-4 border-[#d4af37]"
+                >
+                  <p className="font-bold">{feature}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 5. Transformation Section */}
+        <section className="py-24 bg-white relative overflow-hidden">
+          <div className="container mx-auto px-6 text-center relative z-10">
+            <h2 className="text-4xl font-black mb-8 text-gray-900 leading-snug">
+              خليك دايما <span className="text-[#d4af37] underline">أسـد</span>{" "}
+              في بيتك <br /> واستعد رجولتك من جديد
+            </h2>
+            <p className="text-2xl text-gray-600 mb-10">
+              بعد شهر واحد من الاستخدام، المشكلة هتختفي تماماً وهتبهرها بقوتك.
+            </p>
+            <div className="flex justify-center gap-4 text-4xl mb-12">
+              🦁 🔥 💪
+            </div>
+            <Button />
+          </div>
+        </section>
       </main>
-    </>
+    </Link>
   );
 }
