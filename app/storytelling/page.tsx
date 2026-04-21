@@ -17,7 +17,7 @@ export default function Storytelling() {
             alt="Dr. Safaa"
             fill
             priority // ← هذه الصورة هي LCP، تُحمَّل أولاً
-            className="opacity-90"
+            className="opacity-90 max-w-3xl mx-auto "
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1c1b1b] via-transparent to-[#1c1b1b]/90" />
@@ -121,6 +121,13 @@ export default function Storytelling() {
             <h2 className="text-4xl font-bold mb-8">
               الحل هو: <span className="text-[#d4af37]">VIROX</span>
             </h2>
+            <Image
+              src="/product.jpeg"
+              alt="Virox Product"
+              width={300}
+              height={300}
+              className="mx-auto mb-8"
+            />
             <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-loose">
               شاب وزيوت طبيعية بنسب دقيقة لتحقيق أقصى استفادة. آمن تماماً على
               مرضى السكر والضغط والقلب. بمجرد أول دهنة هتلاقي انتصابك بقى
