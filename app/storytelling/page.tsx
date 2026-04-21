@@ -13,7 +13,7 @@ export default function Storytelling() {
         {/* 1. Hero Section - The Hook */}
         <div className=" h-svh">
           <Image
-            src="/doctor.jpg"
+            src="/doctor.jpeg"
             alt="Dr. Safaa"
             fill
             priority // ← هذه الصورة هي LCP، تُحمَّل أولاً
