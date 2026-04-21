@@ -8,7 +8,7 @@ import { Cairo } from "next/font/google";
 const cairo = Cairo({ subsets: ["arabic"], weight: ["400", "700"] });
 
 export const metadata: Metadata = {
-  title: "Clinical Results — KREVA GEL",
+  title: "Clinical Results — VIROX GEL",
   description: "النتائج السريرية لVIROX — إحصاءات وشهادات حقيقية",
 };
 

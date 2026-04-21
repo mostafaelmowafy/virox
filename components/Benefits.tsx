@@ -44,7 +44,7 @@ export default function Benefits() {
         </ul>
         <Image
           src="/product.jpeg"
-          alt="KREVA GEL - فوائد"
+          alt="VIROX GEL - فوائد"
           width={300}
           height={100}
           className="rounded-lg shadow-lg object-cover  "

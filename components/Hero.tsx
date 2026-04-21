@@ -8,7 +8,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-0">
         <Image
           src="/hero.jpeg"
-          alt="KREVA GEL - منتج طبي فاخر"
+          alt="VIROX GEL - منتج طبي فاخر"
           fill
           priority // ← هذه الصورة هي LCP، تُحمَّل أولاً
           className="opacity-90"

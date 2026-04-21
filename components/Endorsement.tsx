@@ -5,7 +5,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "The Science — KREVA GEL",
+  title: "The Science — VIROX GEL",
   description: "العلم وراء VIROX — المكونات الفعالة وآلية العمل",
 };
 
