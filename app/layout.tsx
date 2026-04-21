@@ -19,12 +19,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "KREVA GEL - استعيد ثقتك وفحولتك",
+  title: "VIROX GEL - استعيد ثقتك وفحولتك",
   description:
     "VIROX - الحل الطبي المتطور لعلاج ضعف الانتصاب وتعزيز الأداء الجنسي. مرخص من وزارة الصحة. شحن مجاني لجميع المحافظات. الدفع عند الاستلام.",
-  keywords: ["VIROX", "ضعف الانتصاب", "علاج طبي", "kreva gel"],
+  keywords: ["VIROX", "ضعف الانتصاب", "علاج طبي", "VIROX gel"],
   openGraph: {
-    title: "KREVA GEL - استعيد ثقتك وفحولتك",
+    title: "VIROX GEL - استعيد ثقتك وفحولتك",
     description: "الحل الطبي المتطور لعلاج ضعف الانتصاب",
     type: "website",
   },
