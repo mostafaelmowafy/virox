@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <header className="relative min-h-[100vh] flex items-center justify-center pt-24 overflow-hidden charcoal-bg">
+    <main className="relative min-h-[100vh] flex items-center justify-center pt-24 overflow-hidden charcoal-bg">
       {/* Background Image — priority=true for LCP optimization */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -18,8 +18,8 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 text-center">
-        <h1 className="font-headline font-extrabold text-white text-4xl md:text-7xl mb-8 leading-tight max-w-4xl mx-auto tracking-tight">
+      <div className="relative z-10 container mx-auto text-center flex flex-col items-center w-screen">
+        <h1 className="font-headline font-extrabold text-white text-4xl md:text-6xl mb-8 leading-tight w-screen tracking-tight bg-gray-400/70 px-6 py-4">
           وداعاً لضعف الانتصاب واستعيد ثقتك وفحولتك
         </h1>
         <div className="flex justify-center mt-12">
@@ -36,6 +36,6 @@ export default function Hero() {
           </button>
         </div>
       </div>
-    </header>
+    </main>
   );
 }
