@@ -34,8 +34,6 @@ export default function OrderForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
 
-  const price = 420;
-
   // إضافة النوع string للمدخل str
   const convertArabicNumsToEnglish = (str: string) => {
     return str.replace(/[٠-٩]/g, (d) => '٠١٢٣٤٥٦٧٨٩'.indexOf(d).toString());
@@ -97,7 +95,7 @@ export default function OrderForm() {
 
       if (typeof window.fbq !== 'undefined') {
         window.fbq('track', 'Purchase', {
-          value: price,
+          value: 420,
           currency: 'EGP',
           content_name: 'VIROX GEL',
           content_type: 'product',
@@ -134,7 +132,7 @@ export default function OrderForm() {
               </span>
               <div className="flex items-center justify-center gap-4">
                 <span className="text-5xl font-bold text-[#d4af37]">
-                  {price} ج.م
+                  420 ج.م
                 </span>
                 <span className="text-xl text-white/40 line-through">
                   500 ج.م
