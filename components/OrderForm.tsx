@@ -2,6 +2,7 @@
 import { useState, FormEvent } from 'react'; // تأكد أنها هكذا
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import ReactPixel from 'react-facebook-pixel';
 import toast from 'react-hot-toast';
 
 declare global {
@@ -84,9 +85,7 @@ export default function OrderForm() {
         body: JSON.stringify(orderData),
       });
 
-      if (typeof window !== 'undefined' && window.fbq) {
-        window.fbq('track', 'Purchase', { value: 420, currency: 'EGP' });
-      }
+      ReactPixel.track('Purchase', { value: 420, currency: 'EGP' });
 
       toast.success('تم إرسال طلبك بنجاح!');
       router.push('/ThankYouPage');
