@@ -1,32 +1,33 @@
-import type { Metadata } from "next";
-import { Manrope, Inter } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Manrope, Inter } from 'next/font/google';
+import './globals.css';
+import FacebookPixel from '@/components/FacebookPixel';
 
 // next/font loads fonts with zero layout shift, hosted on Vercel CDN
 
 const manrope = Manrope({
-  subsets: ["latin"],
-  weight: ["400", "500", "700", "800"],
-  variable: "--font-manrope",
-  display: "swap",
+  subsets: ['latin'],
+  weight: ['400', '500', '700', '800'],
+  variable: '--font-manrope',
+  display: 'swap',
 });
 
 const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-inter",
-  display: "swap",
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-inter',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: "VIROX GEL - استعيد ثقتك وفحولتك",
+  title: 'VIROX GEL - استعيد ثقتك وفحولتك',
   description:
-    "VIROX - الحل الطبي المتطور لعلاج ضعف الانتصاب وتعزيز الأداء الجنسي. مرخص من وزارة الصحة. شحن مجاني لجميع المحافظات. الدفع عند الاستلام.",
-  keywords: ["VIROX", "ضعف الانتصاب", "علاج طبي", "VIROX gel"],
+    'VIROX - الحل الطبي المتطور لعلاج ضعف الانتصاب وتعزيز الأداء الجنسي. مرخص من وزارة الصحة. شحن مجاني لجميع المحافظات. الدفع عند الاستلام.',
+  keywords: ['VIROX', 'ضعف الانتصاب', 'علاج طبي', 'VIROX gel'],
   openGraph: {
-    title: "VIROX GEL - استعيد ثقتك وفحولتك",
-    description: "الحل الطبي المتطور لعلاج ضعف الانتصاب",
-    type: "website",
+    title: 'VIROX GEL - استعيد ثقتك وفحولتك',
+    description: 'الحل الطبي المتطور لعلاج ضعف الانتصاب',
+    type: 'website',
   },
 };
 
@@ -42,6 +43,7 @@ export default function RootLayout({
       className={`${manrope.variable} ${inter.variable}`}
     >
       <body className="bg-white text-[#1c1b1b] font-body selection:bg-yellow-100 antialiased">
+        <FacebookPixel />
         {children}
       </body>
     </html>

@@ -4,10 +4,9 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 
-// تعريف واجهة البكسل عشان نلغي الـ any
 declare global {
   interface Window {
-    fbq: (track: string, event: string, options?: Record<string, any>) => void;
+    fbq: (...args: unknown[]) => void;
   }
 }
 
@@ -15,9 +14,6 @@ declare global {
 interface FormErrors {
   name?: string;
   phone?: string;
-  otherPhone?: string;
-  governorate?: string;
-  address?: string;
 }
 
 const perks = [
@@ -32,9 +28,7 @@ export default function OrderForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
 
-  const product = { name: 'VIROX' };
-  const selectedOffer = { price: 420, label: 'عرض العلبة الواحدة' };
-  const packQuantity = 1;
+  const price = 420;
 
   // إضافة النوع string للمدخل str
   const convertArabicNumsToEnglish = (str: string) => {
@@ -57,23 +51,8 @@ export default function OrderForm() {
       newErrors.phone =
         '❌ من فضلك أدخل رقم هاتف صحيح يبدأ بـ 010 - 011 - 015 - 0127 - 0128 - 0120 - 0121 ويتكون من 11 رقم';
     }
-
-    const rawOtherPhone = ((formData.get('otherPhone') as string) || '').trim();
-    const otherPhone = convertArabicNumsToEnglish(rawOtherPhone);
-
-    if (otherPhone && !phoneRegex.test(otherPhone)) {
-      newErrors.otherPhone =
-        '❌ من فضلك أدخل رقم هاتف بديل صحيح يبدأ بـ 010 - 011 - 015 - 0127 - 0128 - 0120 - 0121 ويتكون من 11 رقم';
-    }
-
-    if (!formData.get('governorate'))
-      newErrors.governorate = 'يجب إدخال المحافظة';
-    if (!formData.get('address'))
-      newErrors.address = 'يجب إدخال العنوان بالتفصيل';
-
     return newErrors;
   };
-
   // إضافة النوع FormEvent للحدث e
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -92,11 +71,6 @@ export default function OrderForm() {
     const orderData = {
       name: formData.get('name'),
       phone: formData.get('phone'),
-      otherPhone: formData.get('otherPhone') || 'لا يوجد',
-      governorate: formData.get('governorate'),
-      address: formData.get('address'),
-      details: `${product.name} - ${selectedOffer.label}`,
-      total: selectedOffer.price * packQuantity,
       timestamp: new Date().toLocaleString('ar-EG'),
     };
 
@@ -110,15 +84,8 @@ export default function OrderForm() {
         body: JSON.stringify(orderData),
       });
 
-      // إضافة تفحص النوع للـ Window لضمان عمل البكسل
       if (typeof window !== 'undefined' && window.fbq) {
-        window.fbq('track', 'Purchase', {
-          value: selectedOffer.price * packQuantity,
-          currency: 'EGP',
-          content_name: product.name,
-          content_category: 'Health',
-          num_items: packQuantity,
-        });
+        window.fbq('track', 'Purchase', { value: 420, currency: 'EGP' });
       }
 
       toast.success('تم إرسال طلبك بنجاح!');
@@ -141,7 +108,7 @@ export default function OrderForm() {
                 src="/product2.jpeg"
                 alt="Product Image"
                 fill
-                className="drop-shadow-[0_20px_50px_rgba(212,175,55,0.3)]"
+                className="object-contain drop-shadow-[0_20px_50px_rgba(212,175,55,0.3)]"
               />
             </div>
 
@@ -151,7 +118,7 @@ export default function OrderForm() {
               </span>
               <div className="flex items-center justify-center gap-4">
                 <span className="text-5xl font-bold text-[#d4af37]">
-                  {selectedOffer.price} ج.م
+                  {price} ج.م
                 </span>
                 <span className="text-xl text-white/40 line-through">
                   500 ج.م
@@ -203,58 +170,6 @@ export default function OrderForm() {
                 />
                 {errors.phone && (
                   <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
-                )}
-              </div>
-
-              <div>
-                <input
-                  name="otherPhone"
-                  type="tel"
-                  placeholder="رقم هاتف بديل (اختياري)"
-                  className="w-full p-4 border rounded-xl outline-slate-600 text-right"
-                  maxLength={11}
-                />
-                {errors.otherPhone && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.otherPhone}
-                  </p>
-                )}
-              </div>
-
-              <div>
-                <select
-                  name="governorate"
-                  aria-label="اختر المحافظة"
-                  className="w-full p-4 border rounded-xl focus:ring-2 focus:ring-[#d4af37] outline-none bg-white text-gray-800"
-                >
-                  <option value="">اختر المحافظة</option>
-                  {[
-                    'القاهرة',
-                    'الجيزة',
-                    'الإسكندرية',
-                    'الدقهلية',
-                    'الغربية',
-                  ].map((gov) => (
-                    <option key={gov} value={gov}>
-                      {gov}
-                    </option>
-                  ))}
-                </select>
-                {errors.governorate && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {errors.governorate}
-                  </p>
-                )}
-              </div>
-
-              <div>
-                <textarea
-                  name="address"
-                  placeholder="العنوان بالتفصيل"
-                  className="w-full p-4 border rounded-xl focus:ring-2 focus:ring-[#d4af37] outline-none text-gray-800 h-24"
-                ></textarea>
-                {errors.address && (
-                  <p className="text-red-500 text-xs mt-1">{errors.address}</p>
                 )}
               </div>
 

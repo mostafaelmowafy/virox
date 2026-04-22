@@ -13,7 +13,7 @@ export default function Storytelling() {
         {/* 1. Hero Section - The Hook */}
         <div className=" h-[52vh] relative ">
           <Image
-            src="/product.jpeg"
+            src="/doctor.jpeg"
             alt="Dr. Safaa"
             fill
             priority // ← هذه الصورة هي LCP، تُحمَّل أولاً
@@ -47,7 +47,7 @@ export default function Storytelling() {
               {/* استبدل dr-safaa.jpg بالصورة الحقيقية */}
               <div className="absolute inset-0 bg-gray-200 flex items-center justify-center text-gray-400">
                 <Image
-                  src="/doctor.jpeg" // تأكد من وضع صورة الطبيب في مجلد public
+                  src="/button.png" // تأكد من وضع صورة الطبيب في مجلد public
                   alt="Dr. Safaa"
                   fill
                 />
