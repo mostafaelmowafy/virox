@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Manrope, Inter } from 'next/font/google';
 import './globals.css';
 import { FacebookPixel } from '@/components/FacebookPixel';
+import { Suspense } from 'react';
 
 // next/font loads fonts with zero layout shift, hosted on Vercel CDN
 
@@ -43,7 +44,9 @@ export default function RootLayout({
       className={`${manrope.variable} ${inter.variable}`}
     >
       <body className="bg-white text-[#1c1b1b] font-body selection:bg-yellow-100 antialiased">
-        <FacebookPixel />
+        <Suspense fallback={null}>
+          <FacebookPixel />
+        </Suspense>
         {children}
       </body>
     </html>
