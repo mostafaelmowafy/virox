@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Manrope, Inter } from 'next/font/google';
 import './globals.css';
-import FacebookPixel from '@/components/FacebookPixel';
+import { FacebookPixel } from '@/components/FacebookPixel';
 
 // next/font loads fonts with zero layout shift, hosted on Vercel CDN
 

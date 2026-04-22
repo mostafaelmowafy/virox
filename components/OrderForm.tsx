@@ -10,6 +10,12 @@ declare global {
   }
 }
 
+// declare global {
+//   interface Window {
+//     fbq: any;
+//   }
+// }
+
 // تعريف شكل الأخطاء لـ TypeScript
 interface FormErrors {
   name?: string;
@@ -56,6 +62,11 @@ export default function OrderForm() {
   // إضافة النوع FormEvent للحدث e
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (typeof window.fbq !== 'undefined') {
+      window.fbq('track', 'Contact');
+    }
+
     const formElement = e.currentTarget;
     const formData = new FormData(formElement);
     const newErrors = validateForm(formData);
@@ -84,8 +95,13 @@ export default function OrderForm() {
         body: JSON.stringify(orderData),
       });
 
-      if (typeof window !== 'undefined' && window.fbq) {
-        window.fbq('track', 'Purchase', { value: 420, currency: 'EGP' });
+      if (typeof window.fbq !== 'undefined') {
+        window.fbq('track', 'Purchase', {
+          value: price,
+          currency: 'EGP',
+          content_name: 'VIROX GEL',
+          content_type: 'product',
+        });
       }
 
       toast.success('تم إرسال طلبك بنجاح!');
