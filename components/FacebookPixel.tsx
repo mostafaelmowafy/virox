@@ -4,7 +4,8 @@ import Script from 'next/script';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
-const FB_PIXEL_ID = 123456789; // استبدل هذا بالـ ID الخاص بك من فيسبوك
+// ضع رقم البيكسل الخاص بك هنا مباشرة بين العلامتين
+const FB_PIXEL_ID = '1252053403719661';
 
 export const FacebookPixel = () => {
   const pathname = usePathname();
@@ -16,8 +17,7 @@ export const FacebookPixel = () => {
     }
   }, [pathname, searchParams]);
 
-  if (!FB_PIXEL_ID) return null; // تجنب تشغيل الكود إذا لم يتم العثور على الـ ID
-
+  // حذفنا شرط الـ null لأن الرقم أصبح موجوداً دائماً
   return (
     <>
       <Script
