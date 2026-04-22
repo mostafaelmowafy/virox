@@ -4,7 +4,7 @@ import Script from 'next/script';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
-const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID;
+const FB_PIXEL_ID = 123456789; // استبدل هذا بالـ ID الخاص بك من فيسبوك
 
 export const FacebookPixel = () => {
   const pathname = usePathname();
