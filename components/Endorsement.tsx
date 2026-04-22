@@ -1,38 +1,34 @@
-import { Award, CheckSquare, Slack, Sparkles2 } from "@deemlol/next-icons";
-import Button from "./Button";
+import { Award, CheckSquare, Slack, Sparkles2 } from '@deemlol/next-icons';
+import Button from './Button';
 
-import Image from "next/image";
-import type { Metadata } from "next";
+import Image from 'next/image';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "The Science — VIROX GEL",
-  description: "العلم وراء VIROX — المكونات الفعالة وآلية العمل",
+  title: 'The Science — VIROX GEL',
+  description: 'العلم وراء VIROX — المكونات الفعالة وآلية العمل',
 };
 
-import { Cairo } from "next/font/google";
+import { Cairo } from 'next/font/google';
 
-const cairo = Cairo({ subsets: ["arabic"], weight: ["400", "700"] });
+const cairo = Cairo({ subsets: ['arabic'], weight: ['400', '700'] });
 
 export default function Endorsement() {
   return (
-    <section
-      className={`${cairo.className} min-h-screen bg-[#fafafa] py-16 px-4`}
-      dir="rtl"
-    >
-      <div className="max-w-7xl mx-auto">
+    <section className={`${cairo.className} bg-[#fafafa] py-4 px-4`} dir="rtl">
+      <div className="max-w-6xl mx-auto">
         {/* العنوان الرئيسي */}
-        <h1 className="text-2xl font-bold text-center text-gray-900 mb-20 leading-tight">
-          لماذا ينصح %90 من أطباء العالم باستخدام VIROX
+        <h1 className="text-2xl font-bold text-center text-gray-900 mb-4 leading-tight">
+          لماذا ينصح %90 من أطباء العالم
+          <span className=" block text-primary tracking-widest">
+            {' '}
+            باستخــــــــــــدام VIROX
+          </span>
         </h1>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center relative">
-          {/* تأثير الإضاءة الخلفية (Glow Effect) */}
-          <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
-            <div className="w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-gray-200/40 rounded-full blur-[100px]"></div>
-          </div>
-
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center relative">
           {/* الجهة اليمنى: المميزات */}
-          <div className="space-y-16 z-10 order-2 lg:order-1">
+          <div className=" space-y-4 md:space-y-16 z-10 order-2 lg:order-1 ">
             <FeatureItem
               title="استعادة الحيوية"
               desc="يجعلك تشعر وكأنك شاب في سن الـ20 من عمره"
@@ -52,7 +48,7 @@ export default function Endorsement() {
           <div className="flex justify-center z-20 order-1 lg:order-2">
             <div className="relative w-[280px] h-[350px] md:w-[350px] md:h-[450px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
               <Image
-                src="/product2.jpeg" // تأكد من وضع صورة الطبيب في مجلد public
+                src="/hero.jpeg" // تأكد من وضع صورة الطبيب في مجلد public
                 alt="Doctor recommending Criva Gel"
                 fill
                 priority
@@ -61,7 +57,7 @@ export default function Endorsement() {
           </div>
 
           {/* الجهة اليسرى: المميزات */}
-          <div className="space-y-16 z-10 order-3 lg:order-3">
+          <div className="space-y-4 md:space-y-16 z-10 order-3 lg:order-3">
             <FeatureItem
               title="فعالية مثبتة"
               desc="لأنه أثبت قوة فاعليته في علاج حالات ضعف الانتصاب"
@@ -79,8 +75,8 @@ export default function Endorsement() {
         </div>
 
         {/* الجزء السفلي: زر الطلب */}
-        <div className="text-center mt-20">
-          <h2 className="text-xl font-bold text-[#c29b3c] mb-6">
+        <div className="text-center">
+          <h2 className="text-xl font-bold text-[#c29b3c] my-6">
             الحل الآن بين يديك
           </h2>
           <Button />
@@ -99,14 +95,15 @@ function FeatureItem({
   title: string;
   desc: string;
   icon: React.ReactNode;
-  isLeft?: boolean;
 }) {
   return (
-    <div className={`flex items-start gap-4 lg:flex-row md:justify-center `}>
+    <div
+      className={`flex items-start gap-4 lg:flex-row max-w-[450px] md:w-[380px] lg:w-[390px] md:max-w-none mx-auto bg-gradient-to-r from-[#c29b3c]/10 to-transparent p-4 rounded-lg`}
+    >
       <div className="text-[#c29b3c] p-2 rounded-lg shadow-sm">
         <span className="material-icons text-3xl">{icon}</span>
       </div>
-      <div className="max-w-[250px] md:w-[350px] md:max-w-none">
+      <div className=" flex flex-col gap-1">
         <h3 className="font-bold text-lg text-gray-900 mb-1">{title}</h3>
         <p className="text-sm text-gray-500 leading-relaxed">{desc}</p>
       </div>

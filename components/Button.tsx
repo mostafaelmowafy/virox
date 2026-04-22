@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import Image from "next/image";
+import Image from 'next/image';
 
 export default function Button() {
   return (
@@ -9,10 +9,10 @@ export default function Button() {
     <button
       onClick={() => {
         document
-          .getElementById("order")
-          ?.scrollIntoView({ behavior: "smooth" });
+          .getElementById('order')
+          ?.scrollIntoView({ behavior: 'smooth' });
       }}
-      className="flex flex-row justify-center items-center mt-12 group cursor-pointer w-fit mx-auto"
+      className="flex flex-row justify-center items-center my-2 group cursor-pointer w-fit mx-auto"
       dir="ltr"
     >
       {/* الجزء الأول: الصورة بالشكل السداسي */}
@@ -21,7 +21,7 @@ export default function Button() {
         style={{
           // ده الكود المسؤول عن عمل الشكل السداسي
           clipPath:
-            "polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 50%)",
+            'polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 50%)',
         }}
       >
         <Image
