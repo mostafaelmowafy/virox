@@ -5,7 +5,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
 // ضع رقم البيكسل الخاص بك هنا مباشرة بين العلامتين
-const FB_PIXEL_ID = '1252053403719661';
+const FB_PIXEL_ID = '01234567890123'; // استبدل هذا بالرقم الحقيقي لبيكسل فيسبوك الخاص بك
 
 export const FacebookPixel = () => {
   const pathname = usePathname();
