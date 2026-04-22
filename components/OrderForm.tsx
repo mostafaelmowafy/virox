@@ -105,7 +105,7 @@ export default function OrderForm() {
           <div className="p-8 md:p-16 flex flex-col justify-center bg-gradient-to-br from-[#252423] to-[#111]">
             <div className="relative w-full mb-6 aspect-square transform hover:scale-105 transition-transform duration-500">
               <Image
-                src="/product2.jpeg"
+                src="/product.jpeg"
                 alt="Product Image"
                 fill
                 className="object-contain drop-shadow-[0_20px_50px_rgba(212,175,55,0.3)]"
