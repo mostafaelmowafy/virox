@@ -57,7 +57,7 @@ export default function OrderForm() {
         '❌ من فضلك أدخل رقم هاتف صحيح يبدأ بـ 010 - 011 - 015 - 0127 - 0128 - 0120 - 0121 ويتكون من 11 رقم';
     }
 
-    const rawOtherPhone = (formData.get('otherPhone') || '').trim();
+    const rawOtherPhone = ((formData.get('otherPhone') as string) || '').trim();
 
     const otherPhone = convertArabicNumsToEnglish(rawOtherPhone);
 
