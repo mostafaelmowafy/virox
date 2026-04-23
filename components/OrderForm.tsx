@@ -178,7 +178,7 @@ export default function OrderForm() {
                 <input
                   name="phone"
                   type="tel"
-                  placeholder="رقم الهاتف (عليه واتساب للتأكيد)"
+                  placeholder="رقم الهاتف"
                   className="w-full p-4 border rounded-xl outline-slate-600 text-right"
                   maxLength={11}
                 />
