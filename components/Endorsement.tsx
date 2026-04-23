@@ -15,7 +15,7 @@ const cairo = Cairo({ subsets: ['arabic'], weight: ['400', '700'] });
 
 export default function Endorsement() {
   return (
-    <section className={`${cairo.className} bg-[#fafafa] py-4 px-4`} dir="rtl">
+    <section className={`${cairo.className} bg-[#fafafa] py-4`} dir="rtl">
       <div className="max-w-6xl mx-auto">
         {/* العنوان الرئيسي */}
         <h1 className="text-2xl font-bold text-center text-gray-900 mb-4 leading-tight">
@@ -26,9 +26,9 @@ export default function Endorsement() {
           </span>
         </h1>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center relative">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center relative">
           {/* الجهة اليمنى: المميزات */}
-          <div className=" space-y-4 md:space-y-16 z-10 order-2 lg:order-1 ">
+          <div className=" space-y-4 md:space-y-16 z-10 order-2 md:order-1 ">
             <FeatureItem
               title="استعادة الحيوية"
               desc="يجعلك تشعر وكأنك شاب في سن الـ20 من عمره"
@@ -45,19 +45,20 @@ export default function Endorsement() {
           </div>
 
           {/* المنتصف: صورة الطبيب */}
-          <div className="flex justify-center z-20 order-1 lg:order-2">
-            <div className="relative w-[280px] h-[350px] md:w-[350px] md:h-[450px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+          <div className="flex justify-center z-20 order-1 md:order-2">
+            <div className="relative w-full h-[350px] md:w-[350px] md:h-[450px] md:rounded-3xl overflow-hidden shadow-2xl md:border-4 border-white">
               <Image
-                src="/hero.jpeg" // تأكد من وضع صورة الطبيب في مجلد public
-                alt="Doctor recommending Criva Gel"
+                src="/hero.jpeg"
+                alt="..."
                 fill
                 priority
+                sizes="(max-width: 1024px) 100vw, 350px"
               />
             </div>
           </div>
 
           {/* الجهة اليسرى: المميزات */}
-          <div className="space-y-4 md:space-y-16 z-10 order-3 lg:order-3">
+          <div className="space-y-4 md:space-y-16 z-10 order-3 md:order-3">
             <FeatureItem
               title="فعالية مثبتة"
               desc="لأنه أثبت قوة فاعليته في علاج حالات ضعف الانتصاب"
@@ -97,13 +98,11 @@ function FeatureItem({
   icon: React.ReactNode;
 }) {
   return (
-    <div
-      className={`flex items-start gap-4 lg:flex-row max-w-[450px] md:w-[380px] lg:w-[390px] md:max-w-none mx-auto bg-gradient-to-r from-[#c29b3c]/10 to-transparent p-4 rounded-lg`}
-    >
-      <div className="text-[#c29b3c] p-2 rounded-lg shadow-sm">
+    <div className="flex items-start gap-4 bg-gradient-to-r from-[#c29b3c]/10 to-transparent p-4 rounded-lg w-full">
+      <div className="text-[#c29b3c] p-2 rounded-lg shadow-sm flex-shrink-0">
         <span className="material-icons text-3xl">{icon}</span>
       </div>
-      <div className=" flex flex-col gap-1">
+      <div className="flex flex-col gap-1 min-w-0">
         <h3 className="font-bold text-lg text-gray-900 mb-1">{title}</h3>
         <p className="text-sm text-gray-500 leading-relaxed">{desc}</p>
       </div>

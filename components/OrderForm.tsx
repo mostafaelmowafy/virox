@@ -20,6 +20,7 @@ declare global {
 interface FormErrors {
   name?: string;
   phone?: string;
+  otherPhone?: string;
 }
 
 const perks = [
@@ -55,6 +56,16 @@ export default function OrderForm() {
       newErrors.phone =
         '❌ من فضلك أدخل رقم هاتف صحيح يبدأ بـ 010 - 011 - 015 - 0127 - 0128 - 0120 - 0121 ويتكون من 11 رقم';
     }
+
+    const rawOtherPhone = (formData.get('otherPhone') || '').trim();
+
+    const otherPhone = convertArabicNumsToEnglish(rawOtherPhone);
+
+    if (otherPhone && !phoneRegex.test(otherPhone)) {
+      newErrors.otherPhone =
+        '❌ من فضلك أدخل رقم هاتف بديل صحيح يبدأ بـ 010 - 011 - 015 - 0127 - 0128 - 0120 - 0121 ويتكون من 11 رقم';
+    }
+
     return newErrors;
   };
   // إضافة النوع FormEvent للحدث e
@@ -80,6 +91,7 @@ export default function OrderForm() {
     const orderData = {
       name: formData.get('name'),
       phone: formData.get('phone'),
+      otherPhone: formData.get('otherPhone') || 'لا يوجد',
       timestamp: new Date().toLocaleString('ar-EG'),
     };
 
@@ -122,6 +134,7 @@ export default function OrderForm() {
                 src="/product.jpeg"
                 alt="Product Image"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-contain drop-shadow-[0_20px_50px_rgba(212,175,55,0.3)]"
               />
             </div>
@@ -184,6 +197,22 @@ export default function OrderForm() {
                 />
                 {errors.phone && (
                   <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                )}
+              </div>
+
+              {/* هاتف بديل */}
+              <div className="col-span-2">
+                <input
+                  name="otherPhone"
+                  type="tel"
+                  placeholder="رقم هاتف بديل (اختياري)"
+                  className="w-full p-4 border rounded-xl outline-slate-600 text-right"
+                  maxLength={11}
+                />
+                {errors.otherPhone && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.otherPhone}
+                  </p>
                 )}
               </div>
 

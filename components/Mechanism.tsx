@@ -27,6 +27,7 @@ export default function HowItWorks() {
                 src="/anatomy-image.jpeg"
                 alt="كيف يعمل جيل كريفا"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
