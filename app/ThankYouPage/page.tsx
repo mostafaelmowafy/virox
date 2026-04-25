@@ -1,9 +1,9 @@
-import Link from "next/link";
-import Image from "next/image";
-import type { Metadata } from "next";
+import Link from 'next/link';
+import Image from 'next/image';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "شكراً لطلبك — VIROX",
+  title: 'شكراً لطلبك — VIROX',
 };
 
 export default function ThankYouPage() {
@@ -48,7 +48,7 @@ export default function ThankYouPage() {
               تم استلام طلبك بنجاح!
             </h1>
             <p className="text-[#4d4635] pb-2 leading-relaxed font-medium text-center ">
-              شكراً لثقتك بنا. سيتواصل معك فريقنا خلال دقائق قليلة لتأكيد الطلب
+              شكراً لثقتك بنا. سيتواصل معك فريقنا في أقرب وقت لتأكيد الطلب
               وترتيب الشحن.
             </p>
             <Link
