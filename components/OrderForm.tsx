@@ -124,7 +124,7 @@ export default function OrderForm() {
   };
 
   return (
-    <section id="order" className="py-8 bg-[#fafafa] relative overflow-hidden">
+    <section className="py-8 bg-[#fafafa] relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-0 bg-[#252423] rounded-3xl overflow-hidden shadow-2xl border border-yellow-900/40">
           <div className="p-8 md:p-16 flex flex-col justify-center bg-gradient-to-br from-[#252423] to-[#111]">
@@ -173,7 +173,12 @@ export default function OrderForm() {
               سيقوم فريق العمل بالتواصل معك لتأكيد الطلب
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-5" dir="rtl">
+            <form
+              id="order"
+              onSubmit={handleSubmit}
+              className="space-y-5"
+              dir="rtl"
+            >
               <div>
                 <input
                   name="name"
