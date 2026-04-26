@@ -92,12 +92,11 @@ export default function OrderForm() {
       name: formData.get('name'),
       phone: formData.get('phone'),
       otherPhone: formData.get('otherPhone') || 'لا يوجد',
-      timestamp: new Date().toLocaleString('ar-EG'),
     };
 
     try {
       const scriptURL =
-        'https://script.google.com/macros/s/AKfycbxM8FvezFArGbVsHxxAOfpP1dH0A7cnSNtXeIh7MPsDanhZ71zLZn1JTEQYPIhNhq84/exec';
+        'https://script.google.com/macros/s/AKfycbzPp2xsfiRF3QiMrqOaE8-CALOLUwdXp9jR5qNGHz8au98GJfhpxpwSFMMlE5StxdVB/exec';
 
       await fetch(scriptURL, {
         method: 'POST',
