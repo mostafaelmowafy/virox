@@ -44,7 +44,7 @@ export default function OrderForm() {
   const validateForm = (formData: FormData) => {
     const newErrors: FormErrors = {};
     const phoneRegex =
-      /^(?:(?:010|011|015)[0-9]{8}|(?:0127|0128|0120|0121)[0-9]{7})$/;
+      /^(?:(?:010|011|015)[0-9]{8}|(?:0127|0128|0120|0121|0122)[0-9]{7})$/;
 
     const rawPhone = ((formData.get('phone') as string) || '').trim();
     const phone = convertArabicNumsToEnglish(rawPhone);
