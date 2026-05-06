@@ -1,5 +1,6 @@
 'use client';
-import { useState, FormEvent } from 'react'; // تأكد أنها هكذا
+
+import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
@@ -10,13 +11,6 @@ declare global {
   }
 }
 
-// declare global {
-//   interface Window {
-//     fbq: any;
-//   }
-// }
-
-// تعريف شكل الأخطاء لـ TypeScript
 interface FormErrors {
   name?: string;
   phone?: string;
@@ -30,17 +24,27 @@ const perks = [
   { icon: '↩️', text: 'سياسة الأسترجاع ضمان 14 يوم' },
 ];
 
+const trackEvent = (event: string, params?: Record<string, unknown>) => {
+  if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
+    window.fbq('track', event, params);
+  }
+};
+
+const trackCustomEvent = (event: string, params?: Record<string, unknown>) => {
+  if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
+    window.fbq('trackCustom', event, params);
+  }
+};
+
 export default function OrderForm() {
   const router = useRouter();
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
 
-  // إضافة النوع string للمدخل str
   const convertArabicNumsToEnglish = (str: string) => {
     return str.replace(/[٠-٩]/g, (d) => '٠١٢٣٤٥٦٧٨٩'.indexOf(d).toString());
   };
 
-  // إضافة النوع FormData
   const validateForm = (formData: FormData) => {
     const newErrors: FormErrors = {};
     const phoneRegex =
@@ -50,6 +54,7 @@ export default function OrderForm() {
     const phone = convertArabicNumsToEnglish(rawPhone);
 
     if (!formData.get('name')) newErrors.name = 'يجب إدخال الاسم بالكامل';
+
     if (!phone) {
       newErrors.phone = 'يجب إدخال رقم الهاتف';
     } else if (!phoneRegex.test(phone)) {
@@ -58,7 +63,6 @@ export default function OrderForm() {
     }
 
     const rawOtherPhone = ((formData.get('otherPhone') as string) || '').trim();
-
     const otherPhone = convertArabicNumsToEnglish(rawOtherPhone);
 
     if (otherPhone && !phoneRegex.test(otherPhone)) {
@@ -68,22 +72,28 @@ export default function OrderForm() {
 
     return newErrors;
   };
-  // إضافة النوع FormEvent للحدث e
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (typeof window.fbq !== 'undefined') {
-      window.fbq('track', 'Contact');
-    }
 
     const formElement = e.currentTarget;
     const formData = new FormData(formElement);
     const newErrors = validateForm(formData);
 
+    // إيقاف التنفيذ لو في أخطاء — لا نرسل أي بيكسل
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
+
+    // ✅ 1. الفورم صح والمستخدم بدأ عملية الطلب
+    trackEvent('InitiateCheckout', {
+      value: 420,
+      currency: 'EGP',
+      content_name: 'VIROX GEL',
+      content_type: 'product',
+      num_items: 1,
+    });
 
     setLoading(true);
     setErrors({});
@@ -104,19 +114,32 @@ export default function OrderForm() {
         body: JSON.stringify(orderData),
       });
 
-      if (typeof window.fbq !== 'undefined') {
-        window.fbq('track', 'Purchase', {
-          value: 420,
-          currency: 'EGP',
-          content_name: 'VIROX GEL',
-          content_type: 'product',
-        });
-      }
+      // ✅ 2. بيانات العميل اتسجلت بنجاح
+      trackEvent('Lead', {
+        value: 420,
+        currency: 'EGP',
+        content_name: 'VIROX GEL',
+      });
+
+      // ✅ 3. الحدث الرئيسي — طلب مكتمل
+      trackEvent('Purchase', {
+        value: 420,
+        currency: 'EGP',
+        content_name: 'VIROX GEL',
+        content_type: 'product',
+        num_items: 1,
+      });
 
       toast.success('تم إرسال طلبك بنجاح!');
       router.push('/ThankYouPage');
     } catch (error) {
       console.error('Submission error:', error);
+
+      // ✅ 4. تتبع الأخطاء
+      trackCustomEvent('OrderFailed', {
+        content_name: 'VIROX GEL',
+      });
+
       toast.error('❌ حدث خطأ، يرجى المحاولة مرة أخرى');
     } finally {
       setLoading(false);
@@ -127,6 +150,7 @@ export default function OrderForm() {
     <section className="py-8 bg-[#fafafa] relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-0 bg-[#252423] rounded-3xl overflow-hidden shadow-2xl border border-yellow-900/40">
+          {/* القسم الأيسر — الصورة والمعلومات */}
           <div className="p-8 md:p-16 flex flex-col justify-center bg-gradient-to-br from-[#252423] to-[#111]">
             <div className="relative w-full mb-6 aspect-square transform hover:scale-105 transition-transform duration-500">
               <Image
@@ -165,6 +189,7 @@ export default function OrderForm() {
             </div>
           </div>
 
+          {/* القسم الأيمن — الفورم */}
           <div className="p-10 md:p-16 bg-white">
             <h3 className="text-2xl font-bold mb-2 text-right text-gray-900">
               سجل بياناتك الآن
@@ -179,6 +204,7 @@ export default function OrderForm() {
               className="space-y-5"
               dir="rtl"
             >
+              {/* الاسم */}
               <div>
                 <input
                   name="name"
@@ -191,6 +217,7 @@ export default function OrderForm() {
                 )}
               </div>
 
+              {/* رقم الهاتف */}
               <div>
                 <input
                   name="phone"
@@ -204,7 +231,7 @@ export default function OrderForm() {
                 )}
               </div>
 
-              {/* هاتف بديل */}
+              {/* رقم هاتف بديل */}
               <div className="col-span-2">
                 <input
                   name="otherPhone"
@@ -220,10 +247,15 @@ export default function OrderForm() {
                 )}
               </div>
 
+              {/* زر الإرسال */}
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full py-5 text-white rounded-2xl font-bold text-xl shadow-lg transition-all ${loading ? 'bg-gray-400' : 'bg-slate-800 hover:bg-black active:scale-95'}`}
+                className={`w-full py-5 text-white rounded-2xl font-bold text-xl shadow-lg transition-all ${
+                  loading
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : 'bg-slate-800 hover:bg-black active:scale-95'
+                }`}
               >
                 {loading ? 'جاري الإرسال...' : 'تأكيد الطلب الآن'}
               </button>
