@@ -19,11 +19,11 @@ const perks = [
   { icon: '↩️', text: 'سياسة الأسترجاع ضمان 14 يوم' },
 ];
 
-const trackEvent = (event: string, params?: Record<string, unknown>) => {
-  if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
-    window.fbq('track', event, params);
-  }
-};
+// const trackEvent = (event: string, params?: Record<string, unknown>) => {
+//   if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
+//     window.fbq('track', event, params);
+//   }
+// };
 
 const trackCustomEvent = (event: string, params?: Record<string, unknown>) => {
   if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
