@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
+import { fireEvent } from '@/app/lib/pixel';
 
 interface FormErrors {
   name?: string;
@@ -81,12 +82,10 @@ export default function OrderForm() {
     }
 
     // ✅ 1. الفورم صح والمستخدم بدأ عملية الطلب
-    trackEvent('InitiateCheckout', {
+    fireEvent('InitiateCheckout', {
       value: 420,
       currency: 'EGP',
       content_name: 'VIROX GEL',
-      content_type: 'product',
-      num_items: 1,
     });
 
     setLoading(true);
@@ -109,11 +108,7 @@ export default function OrderForm() {
       });
 
       // ✅ 2. بيانات العميل اتسجلت بنجاح
-      trackEvent('Lead', {
-        value: 420,
-        currency: 'EGP',
-        content_name: 'VIROX GEL',
-      });
+      fireEvent('Lead', { value: 420, currency: 'EGP' });
 
       toast.success('تم إرسال طلبك بنجاح!');
       router.push('/ThankYouPage');
