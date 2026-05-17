@@ -1,7 +1,7 @@
 'use client';
 
 import Script from 'next/script';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
 // ضع رقم البيكسل الخاص بك هنا مباشرة بين العلامتين
@@ -24,9 +24,9 @@ export const FacebookPixel = () => {
   const pathname = usePathname();
 
   useEffect(() => {
+    // ✅ PageView اتبعت من الـ Script، احنا بس نبعت الـ Custom
     if (window.fbq) {
-      const event = getPageEvent(pathname);
-      window.fbq('trackCustom', event); // ← trackCustom مش track
+      window.fbq('trackCustom', getPageEvent(pathname));
     }
   }, [pathname]);
 
@@ -47,6 +47,7 @@ export const FacebookPixel = () => {
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '${FB_PIXEL_ID}');
+            fbq('track', 'PageView');
           `,
         }}
       />
