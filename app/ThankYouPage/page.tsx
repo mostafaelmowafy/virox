@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import PurchaseEvent from '@/components/PurchaseTracker';
 
 export const metadata: Metadata = {
   title: 'شكراً لطلبك — VIROX',
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
 export default function ThankYouPage() {
   return (
     <>
+      <PurchaseEvent /> {/* ← بيتنفذ لما الصفحة تفتح */}
       <main className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* خلفية صورة المنتج */}
         <div className="absolute inset-0 z-0">

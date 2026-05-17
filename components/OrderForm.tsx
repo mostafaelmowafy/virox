@@ -5,12 +5,6 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 
-declare global {
-  interface Window {
-    fbq: (...args: unknown[]) => void;
-  }
-}
-
 interface FormErrors {
   name?: string;
   phone?: string;
@@ -119,15 +113,6 @@ export default function OrderForm() {
         value: 420,
         currency: 'EGP',
         content_name: 'VIROX GEL',
-      });
-
-      // ✅ 3. الحدث الرئيسي — طلب مكتمل
-      trackEvent('Purchase', {
-        value: 420,
-        currency: 'EGP',
-        content_name: 'VIROX GEL',
-        content_type: 'product',
-        num_items: 1,
       });
 
       toast.success('تم إرسال طلبك بنجاح!');

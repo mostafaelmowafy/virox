@@ -7,15 +7,28 @@ import { useEffect } from 'react';
 // ضع رقم البيكسل الخاص بك هنا مباشرة بين العلامتين
 const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
 
+const getPageEvent = (pathname: string) => {
+  switch (pathname) {
+    case '/':
+      return 'ViewStoryPage';
+    case '/productsells':
+      return 'ViewProductPage';
+    case '/ThankYouPage':
+      return 'ViewThankYouPage';
+    default:
+      return 'PageView';
+  }
+};
+
 export const FacebookPixel = () => {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (window.fbq) {
-      window.fbq('track', 'PageView');
+      const event = getPageEvent(pathname);
+      window.fbq('trackCustom', event); // ← trackCustom مش track
     }
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   // حذفنا شرط الـ null لأن الرقم أصبح موجوداً دائماً
   return (
@@ -34,16 +47,16 @@ export const FacebookPixel = () => {
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '${FB_PIXEL_ID}');
-            fbq('track', 'PageView');
           `,
         }}
       />
+      {}
       <noscript>
         <img
           height="1"
           width="1"
           style={{ display: 'none' }}
-          alt="pixel"
+          alt=""
           src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
         />
       </noscript>
