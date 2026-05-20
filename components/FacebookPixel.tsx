@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
 // ضع رقم البيكسل الخاص بك هنا مباشرة بين العلامتين
-const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID || 4563050710590778; // تأكد من تعيين المتغير في .env.local
+const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID; // تأكد من تعيين المتغير في .env.local
 
 const getPageEvent = (pathname: string) => {
   switch (pathname) {

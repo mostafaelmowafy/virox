@@ -7,7 +7,7 @@ export default function PurchaseEvent() {
     fireEvent('Purchase', {
       content_name: 'successfully completed purchase',
       value: 420,
-      currency: 'EGP',
+      currency: 'pound',
     });
   }, []);
 
