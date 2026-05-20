@@ -44,9 +44,7 @@ export default function RootLayout({
       className={`${manrope.variable} ${inter.variable}`}
     >
       <body className="bg-white text-[#1c1b1b] font-body selection:bg-yellow-100 antialiased">
-        <Suspense fallback={null}>
-          <FacebookPixel />
-        </Suspense>
+        <FacebookPixel />
         {children}
       </body>
     </html>

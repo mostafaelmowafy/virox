@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
-import { fireEvent } from '@/app/lib/pixel';
 
 interface FormErrors {
   name?: string;
@@ -18,18 +17,6 @@ const perks = [
   { icon: '💳', text: 'الدفع عند استلام المنتج' },
   { icon: '↩️', text: 'سياسة الأسترجاع ضمان 14 يوم' },
 ];
-
-// const trackEvent = (event: string, params?: Record<string, unknown>) => {
-//   if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
-//     window.fbq('track', event, params);
-//   }
-// };
-
-const trackCustomEvent = (event: string, params?: Record<string, unknown>) => {
-  if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
-    window.fbq('trackCustom', event, params);
-  }
-};
 
 export default function OrderForm() {
   const router = useRouter();
@@ -81,11 +68,6 @@ export default function OrderForm() {
       return;
     }
 
-    // ✅ 1. الفورم صح والمستخدم بدأ عملية الطلب
-    fireEvent('InitiateCheckout', {
-      content_name: 'started filling order form',
-    });
-
     setLoading(true);
     setErrors({});
 
@@ -105,18 +87,10 @@ export default function OrderForm() {
         body: JSON.stringify(orderData),
       });
 
-      // ✅ 2. بيانات العميل اتسجلت بنجاح
-      fireEvent('Lead', { value: 420, currency: 'EGP' });
-
       toast.success('تم إرسال طلبك بنجاح!');
       router.push('/ThankYouPage');
     } catch (error) {
       console.error('Submission error:', error);
-
-      // ✅ 4. تتبع الأخطاء
-      trackCustomEvent('OrderFailed', {
-        content_name: 'Failed to submit order form',
-      });
 
       toast.error('❌ حدث خطأ، يرجى المحاولة مرة أخرى');
     } finally {
