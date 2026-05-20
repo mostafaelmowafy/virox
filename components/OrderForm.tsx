@@ -83,9 +83,7 @@ export default function OrderForm() {
 
     // ✅ 1. الفورم صح والمستخدم بدأ عملية الطلب
     fireEvent('InitiateCheckout', {
-      value: 420,
-      currency: 'EGP',
-      content_name: 'VIROX GEL',
+      content_name: 'started filling order form',
     });
 
     setLoading(true);
@@ -117,7 +115,7 @@ export default function OrderForm() {
 
       // ✅ 4. تتبع الأخطاء
       trackCustomEvent('OrderFailed', {
-        content_name: 'VIROX GEL',
+        content_name: 'Failed to submit order form',
       });
 
       toast.error('❌ حدث خطأ، يرجى المحاولة مرة أخرى');
