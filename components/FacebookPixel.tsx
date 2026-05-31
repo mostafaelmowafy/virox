@@ -2,7 +2,7 @@
 
 import Script from 'next/script';
 
-const FB_PIXEL_ID = 1287230116931605;
+const FB_PIXEL_ID = 4563050710590778;
 
 export const FacebookPixel = () => {
   if (!FB_PIXEL_ID) return null;
