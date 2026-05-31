@@ -2,7 +2,7 @@
 
 import Script from 'next/script';
 
-const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
+const FB_PIXEL_ID = 1287230116931605;
 
 export const FacebookPixel = () => {
   if (!FB_PIXEL_ID) return null;
